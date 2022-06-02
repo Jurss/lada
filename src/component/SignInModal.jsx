@@ -3,12 +3,11 @@ import styles from './css/signUpModal.module.css'
 import Modal from 'react-modal';
 import closeIcon from '../assets/img/closeIcon.svg'
 import { userContext } from '../context/UserContext';
-import { validateElement } from 'react-modal/lib/helpers/ariaAppHider';
 import { useNavigate } from 'react-router-dom';
 
 const SignUpModal = () => {
 
-    const {modalState, toggleModals, signUp} = useContext(userContext)
+    const {modalState, toggleModals, signIn} = useContext(userContext)
     const [validation, setValidation] = useState()
     const navigate = useNavigate()
 
@@ -22,29 +21,17 @@ const SignUpModal = () => {
 
     const handleForm = async (e) => {
         e.preventDefault()
-        if((inputs.current[1].value.length || inputs.current[2].value.length) < 8){
-            setValidation(" 6 caracteres minimum")
-        }        
-        else if(inputs.current[1].value !== inputs.current[2].value){
-            setValidation("Les mot de passe ne corresponde pas")
-        }
-
         try{
-            const cred = await signUp(
+            const cred = await signIn(
                 inputs.current[0].value,
                 inputs.current[1].value
             )
             formRef.current.reset()
             setValidation("")
-            navigate('/home/home')
+            navigate('/private/private-home')
             toggleModals("close")
-        }catch(err){
-            if(err.code === "auth/invalid-email"){
-                setValidation("Format de l'email invalide")
-            }
-            if(err.code === "auth/email-already-in-use"){
-                setValidation("Email déja utilisé")
-            }
+        }catch{
+            setValidation("Email et/ou mot de passe inccorect")
         }
     }
 
@@ -68,19 +55,19 @@ const SignUpModal = () => {
     <>
       <Modal
         ariaHideApp={false}
-        isOpen={modalState.signUpModal}
+        isOpen={modalState.signInModal}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
       >
           <div id={styles.headerModal}>
-            <h2 id={styles.headerTextModal}>Sign Up</h2>
+            <h2 id={styles.headerTextModal}>Sign In</h2>
             <img id={styles.closeModal} src={closeIcon} alt="close modal" onClick={closeModal} />
           </div>
             <div className={styles.separator}></div>
             <form onSubmit={handleForm} ref={formRef}>
                 <div className={styles.inputContainer}>
-                <label htmlFor="signUpEmail" className="form-label">
+                <label htmlFor="signInEmail" className="form-label">
                           Email adress
                         </label>
                         <input
@@ -89,30 +76,20 @@ const SignUpModal = () => {
                           required
                           type="email"
                           className="form-control"
-                          id="signUpEmail"
+                          id="signInEmail"
                         />
                 </div>
                 <div className={styles.inputContainer}>
-                    <label htmlFor="signUpPwd">Mot de passe: </label>
+                    <label htmlFor="signInPwd">Mot de passe: </label>
                     <input
                         ref={addInput}
                         type="password"
                         name="pwd"
                         required
-                        id="signUpPwd"
+                        id="signInPwd"
                         />
                 </div>
-                <div className={styles.inputContainer}>
-                    <label htmlFor="signUpRepeatPwd">Ressaisissez le mot de passe: </label>
-                    <input
-                        ref={addInput}
-                        type="password"
-                        name="repeatPwd"
-                        required
-                        id="signUpRepeatPwd"
-                        />
-                </div>
-                <button type="submit">Sign Up</button>
+                <button type="submit">Sign In</button>
             </form>
             {validation}
       </Modal>

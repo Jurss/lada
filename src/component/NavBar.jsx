@@ -1,18 +1,37 @@
 import React, { useContext } from 'react'
 import styles from './css/navBar.module.css'
-import { Link } from 'react-router-dom'
 import { userContext } from '../context/UserContext';
+import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../firebase-config';
 
 const NavBar = () => {
-    const {toggleModals} = useContext(userContext)
+    const {toggleModals, currentUser} = useContext(userContext)
+    console.log(currentUser);
+    const navigate = useNavigate()
+    
+    const logOut = async () => {
+        try{
+            await signOut(auth)
+            navigate('/')
+        }catch{
+            alert('Deconnexion Impossible, verifier votre connexion internet !')
+        }
+    }
 
   return (
     <div id={styles.mainContainer}>
-        <Link to='/'><h1>L'ami des Artisants</h1></Link>
+        <h1 id={styles.headerTitle}>L'ami des Artisants</h1>
         <div id={styles.buttonContainer}>
-            <button onClick={() => toggleModals("signUp")} className={styles.buttonSign}>Sign Up</button>
-            <button onClick={() => toggleModals("signIn")} className={styles.buttonSign}>Sign Up</button>
-            <Link to='/logOut' className={styles.buttonLogOut}>Log Out</Link>
+            {currentUser === null &&
+                <>
+                    <button onClick={() => toggleModals("signUp")} className={styles.buttonSign}>S'enregistrer</button>
+                    <button onClick={() => toggleModals("signIn")} className={styles.buttonSign}>Connexion</button>
+                </>
+            }
+            {currentUser !== null &&
+                <button onClick={logOut} className={styles.buttonLogOut}>Déconnexion</button>
+            }
         </div>
     </div>
   )
