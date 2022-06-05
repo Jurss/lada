@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "Nunito-SemiBold";
+    src: url("../../assets/fonts/Nunito-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../assets/fonts/Nunito-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Mukta-SemiBold";
+    src: url("../../assets/fonts/Mukta-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Mukta-Regular";
+    src: url("../../assets/fonts/Mukta-Regular.ttf");
+}
+
+#mainContainer {
+    width: 230px;
+    height: 80vh;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    border-right: 4px solid #FFD24C;
+    border-bottom: 4px solid #FFD24C;
+    border-radius: 50px;
+    padding-top: 64px;
+}
+
+.menuItem {
+    margin-left: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.menuImg {
+    height: 34px;
+    width: 34px;
+}
+
+.menuText {
+    font-family: "Nunito-Regular";
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.menuText:visited,
+.menuText:hover,
+.menuText:active {
+    color: inherit;
+}

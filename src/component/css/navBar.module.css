@@ -42,9 +42,10 @@
 }
 
 .buttonSign {
+    padding-top: 3px;
     border: 1px solid rgba(0, 0, 0, 0.507);
     background-color: #FFE69A;
-    width: 100px;
+    width: 110px;
     height: 34px;
     border-radius: 999px;
     font-family: "Mukta-Regular";
@@ -61,9 +62,10 @@
 }
 
 .buttonLogOut {
+    padding-top: 3px;
     border: 1px solid rgba(0, 0, 0, 0.507);
     background-color: #f06969;
-    width: 100px;
+    width: 110px;
     height: 34px;
     border-radius: 999px;
     font-family: "Mukta-Regular";

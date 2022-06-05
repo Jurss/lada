@@ -7,7 +7,6 @@ import { auth } from '../firebase-config';
 
 const NavBar = () => {
     const {toggleModals, currentUser} = useContext(userContext)
-    console.log(currentUser);
     const navigate = useNavigate()
     
     const logOut = async () => {

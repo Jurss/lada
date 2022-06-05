@@ -22,13 +22,14 @@ const SignUpModal = () => {
     const handleForm = async (e) => {
         e.preventDefault()
         try{
+            // eslint-disable-next-line
             const cred = await signIn(
                 inputs.current[0].value,
                 inputs.current[1].value
             )
             formRef.current.reset()
             setValidation("")
-            navigate('/private/private-home')
+            navigate('/home/home')
             toggleModals("close")
         }catch{
             setValidation("Email et/ou mot de passe inccorect")

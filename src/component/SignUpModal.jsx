@@ -3,7 +3,6 @@ import styles from './css/signUpModal.module.css'
 import Modal from 'react-modal';
 import closeIcon from '../assets/img/closeIcon.svg'
 import { userContext } from '../context/UserContext';
-import { validateElement } from 'react-modal/lib/helpers/ariaAppHider';
 import { useNavigate } from 'react-router-dom';
 
 const SignUpModal = () => {
@@ -30,6 +29,7 @@ const SignUpModal = () => {
         }
 
         try{
+            // eslint-disable-next-line
             const cred = await signUp(
                 inputs.current[0].value,
                 inputs.current[1].value

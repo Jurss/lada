@@ -6,6 +6,7 @@ import SignUpModal from './component/SignUpModal';
 import SignInModal from './component/SignInModal'
 import Private from './pages/private/Private';
 import PrivateHome from './pages/private/privateHome/PrivateHome';
+
 function App() {
   return (
     <div className="App">
@@ -15,7 +16,7 @@ function App() {
         <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/home' element={<Private/>}>
-                <Route path='/home/home' element={<PrivateHome />} />
+                <Route path='/home/home/*' element={<PrivateHome />} />
             </Route>
         </Routes>
     </div>
