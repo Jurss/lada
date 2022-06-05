@@ -1,0 +1,53 @@
+@font-face {
+    font-family: "Nunito-SemiBold";
+    src: url("../../assets/fonts/Nunito-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Nunito-Regular";
+    src: url("../../assets/fonts/Nunito-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Mukta-SemiBold";
+    src: url("../../assets/fonts/Mukta-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: "Mukta-Regular";
+    src: url("../../assets/fonts/Mukta-Regular.ttf");
+}
+
+.separator {
+    background: #DDDDDD;
+    height: 1px;
+    width: 95%;
+}
+
+#headerModal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 24px;
+}
+
+#headerTextModal {
+    font-family: "Nunito-SemiBold";
+}
+
+#closeModal {
+    height: 34px;
+    width: 34px;
+}
+
+.resultText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Mukta-Regular";
+}
+
+span {
+    font-family: "Mukta-SemiBold";
+}

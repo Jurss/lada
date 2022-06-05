@@ -7,11 +7,13 @@ import SignInModal from './component/SignInModal'
 import Private from './pages/private/Private';
 import PrivateHome from './pages/private/privateHome/PrivateHome';
 
+
 function App() {
   return (
     <div className="App">
         <SignUpModal />
         <SignInModal />
+
         <NavBar />
         <Routes>
             <Route path='/' element={<Home />} />

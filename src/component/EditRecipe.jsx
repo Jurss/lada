@@ -1,12 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styles from './css/editRecipe.module.css'
 import {costPrice} from '../logic/calcul'
-import { useIsNumber } from '../hook/IsNumber'
+import {getFormData} from '../logic/getFormData'
 import EditeRecipePrice from './EditeRecipePrice'
+import CostPriceResultModal from './CostPriceResultModal'
+import { userContext } from '../context/UserContext';
+
 
 const EditRecipe = () => {
+    const {toggleModals} = useContext(userContext)
+
     const [addItem, setAddItem] = useState([{id: 0}])
     const [costPriceResult, setCostPriceResult] = useState()
+    const [formData, setFormData] = useState()
 
     const [quantity, setQuantity] = useState([])
 
@@ -41,6 +47,9 @@ const EditRecipe = () => {
         e.preventDefault()
         const result = costPrice(e)
         setCostPriceResult(result)
+        const formDataResult = getFormData(e)
+        setFormData(formDataResult)
+        console.log(formData);
     }
   return (
 
@@ -99,12 +108,10 @@ const EditRecipe = () => {
                     </div>
                 </div>
                 <div id={styles.calculBtnContainer}>
-                <button id={styles.calcBtn} type='submit'>Calculer</button>
+                <button id={styles.calcBtn} type='submit' onClick={() => toggleModals("costPriceResult")}>Calculer</button>
                 </div>
             </form>
-            {costPriceResult !== undefined &&
-                <p>Result: {costPriceResult}</p>
-            }
+            <CostPriceResultModal costPriceResult={costPriceResult} formData={formData} />
         </div>
     </div>
   )

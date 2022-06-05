@@ -1,5 +1,6 @@
 export function costPrice(event) {
-    const price = []
+    const priceElement = []
+    const result = []
 
     for (let i = 0; i < event.target.length; i++) {
         let slice
@@ -13,9 +14,11 @@ export function costPrice(event) {
             const usedUnit = event.target[i + 3].value
             const ratio = (priceForNbUnit / nbUnit) * usedUnit;
             const result = Math.round(ratio * 100) / 100;
-            price.push(result)
+            priceElement.push(result)
         }
     }
-    const result = (price.reduce((partialSum, a) => partialSum + a, 0)) / event.target.quantity.value
+    const totalPrice = priceElement.reduce((partialSum, a) => partialSum + a, 0)
+    const priceForOne = priceElement.reduce((partialSum, a) => partialSum + a, 0) / event.target.quantity.value
+    result.push(totalPrice, priceForOne)
     return result
 }

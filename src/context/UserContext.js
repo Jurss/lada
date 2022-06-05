@@ -25,26 +25,37 @@ export function UserContextProvider(props){
     //modal
     const [modalState, setModalState] = useState({
         signUpModal: false,
-        signInModal: false
+        signInModal: false,
+        costPriceResultModal: false
       })
     
       const toggleModals = modal => {
         if(modal === "signIn") {
           setModalState({
             signUpModal: false,
-            signInModal: true
+            signInModal: true,
+            costPriceResultModal: false
           })
         }
         if(modal === "signUp") {
           setModalState({
             signUpModal: true,
-            signInModal: false
+            signInModal: false,
+            costPriceResultModal: false
           })
         }
+        if(modal === "costPriceResult") {
+            setModalState({
+                signUpModal: false,
+                signInModal: false,
+                costPriceResultModal: true
+            })
+          }
         if(modal === "close") {
           setModalState({
             signUpModal: false,
-            signInModal: false
+            signInModal: false,
+            costPriceResultModal: false
           })
         }
       }
