@@ -1,11 +1,26 @@
 import React, { useState } from 'react'
 import styles from './css/editRecipe.module.css'
 import {costPrice} from '../logic/calcul'
+import { useIsNumber } from '../hook/IsNumber'
 import EditeRecipePrice from './EditeRecipePrice'
 
 const EditRecipe = () => {
     const [addItem, setAddItem] = useState([{id: 0}])
     const [costPriceResult, setCostPriceResult] = useState()
+
+    const [quantity, setQuantity] = useState([])
+
+    const handleQuantity = (e) => {
+        let input = e.target.value
+        if(input.match(/^([0-9]{1,})?(\.)?([0-9]{1,})?$/)){
+            setQuantity(input)
+        }
+    }
+
+    const handleFloat = () => {
+        // The conditional prevents parseFloat(null) = NaN (when the user deletes the input)
+        setQuantity(parseFloat(quantity) || '')
+    }
 
     function getRandomInt(max) {
         return Math.floor(Math.random() * max);
@@ -50,15 +65,17 @@ const EditRecipe = () => {
 
                 <div id={styles.titleContainer}>
                     <label className={styles.labelInput} htmlFor="title">Titre de la fiche: </label>
-                    <input className={styles.input} type="text" id='title' name='title' />
+                    <input className={styles.input} type="text" id='title' name='title' required />
                 </div>
                 <div id={styles.quantityContainer}>
                     <label className={styles.labelInput} htmlFor="quantity">Quantité</label>
-                    <input className={styles.input} type="text" name="quantity" id="quantity" />
+                    <input className={styles.input} type="text" name="quantity" id="quantity" value={quantity} onChange={handleQuantity} onBlur={handleFloat} required/>
                     <div className={styles.selectInputContainer}>
                         <select className={styles.selectInput} name="quantityValue" id="quantityValue" >
-                            <option value="part">part</option>
+                            <option value="part">Part</option>
                             <option value="kilo">Kilo</option>
+                            <option value="unité">Unité</option>
+                            <option value="litre">Litre</option>
                         </select>
                     </div>
                 </div>
@@ -68,7 +85,7 @@ const EditRecipe = () => {
                             <div id={styles.itemDivContainer} key={addItem[idx].id}>
                                 <div id={styles.itemName}>
                                     <label className={styles.labelInput} htmlFor={'item'+idx}>Elément</label>
-                                    <input className={styles.input} type="text" name={'item'+idx} id={'item'+idx}/>
+                                    <input className={styles.input} type="text" name={'item'+idx} id={'item'+idx} required/>
                                 </div>
                                 <EditeRecipePrice idx={idx} />
                                 {addItem.length > 1 &&

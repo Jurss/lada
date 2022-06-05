@@ -1,7 +1,5 @@
 export function costPrice(event) {
     const price = []
-    console.log(event.target.elements);
-    const r = (3.99 / 100) * 4;
 
     for (let i = 0; i < event.target.length; i++) {
         let slice
@@ -18,9 +16,6 @@ export function costPrice(event) {
             price.push(result)
         }
     }
-    console.log(price);
-
     const result = (price.reduce((partialSum, a) => partialSum + a, 0)) / event.target.quantity.value
-    console.log(result);
     return result
 }
