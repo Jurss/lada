@@ -11,10 +11,12 @@ const Menu = () => {
             <img className={styles.menuImg} src={activeRecipeBook} alt="recipe book" />
             <Link to='/home/home/edit' className={styles.menuText}>Editer une fiche</Link>
         </div>
+        {/*
         <div className={styles.menuItem}>
             <img className={styles.menuImg} src={recipeBook} alt="recipe book" />
             <p className={styles.menuText}>Mes fiches recette</p>
         </div>
+  */}
     </div>
   )
 }

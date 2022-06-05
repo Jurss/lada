@@ -27,7 +27,6 @@ const EditRecipe = () => {
         const result = costPrice(e)
         setCostPriceResult(result)
     }
-
   return (
 
     <div id={styles.mainContainer}>
@@ -86,6 +85,9 @@ const EditRecipe = () => {
                 <button id={styles.calcBtn} type='submit'>Calculer</button>
                 </div>
             </form>
+            {costPriceResult !== undefined &&
+                <p>Result: {costPriceResult}</p>
+            }
         </div>
     </div>
   )
